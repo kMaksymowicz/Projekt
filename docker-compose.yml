@@ -10,13 +10,13 @@ services:
     volumes:
       - "wp:/var/www/html:rw"
   mysql:
-    image: "mysql:5.7"
+    image: "ghcr.io/kmaksymowicz/mysql:1.0"
     environment:
       MYSQL_ROOT_PASSWORD: password
     volumes:
       - db:/var/lib/mysql
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
+    image: ghcr.io/kmaksymowicz/phpmyadmin:1.0
     ports:
       - 31338:80
     environment:
@@ -24,16 +24,6 @@ services:
       - PMA_HOST=mysql
     depends_on:
       - mysql
-  wp-cli:
-    image: "wordpress:cli-php7.1"
-    environment:
-      - APACHE_RUN_USER="www-data"
-      - APACHE_RUN_GROUP="www-data"
-    depends_on:
-      - "mysql"
-    volumes:
-      - "wp:/var/www/html:rw"
-      - "./bin/install-wp.sh:/usr/local/bin/install-wp:ro"
 volumes:
   wp: {}
   db: {}
