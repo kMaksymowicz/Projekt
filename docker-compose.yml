@@ -2,6 +2,7 @@ version: '3'
 
 services:
   wordpress:
+    image: ghcr.io/kmaksymowicz/wordpress:1.0
     build: .
     ports:
       - "31337:80"
